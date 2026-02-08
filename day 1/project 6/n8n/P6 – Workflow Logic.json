@@ -1,5 +1,5 @@
 {
-  "name": "P3 – Workflow Logic",
+  "name": "P6 – Workflow Logic",
   "nodes": [
     {
       "parameters": {
@@ -8,10 +8,10 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
       "position": [
-        -256,
-        336
+        -352,
+        608
       ],
-      "id": "c1b2aa02-cf29-457e-8246-be658af72aa3",
+      "id": "c34deb70-0ed4-4d00-a9ed-b68af3408642",
       "name": "Structured Output Parser"
     },
     {
@@ -26,10 +26,10 @@
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1.3,
       "position": [
-        -608,
-        112
+        -720,
+        384
       ],
-      "id": "63b6ded5-0c15-43e7-bc04-eda3e2bde132",
+      "id": "144cf6c0-2c8b-4e27-b6cb-5af4aab4bd51",
       "name": "When chat message received",
       "webhookId": "220d5913-86d7-43af-8748-3974e2af553b"
     },
@@ -40,10 +40,10 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        368,
-        16
+        288,
+        416
       ],
-      "id": "17675835-d34a-4a6c-a2a6-3fbb9d697d87",
+      "id": "696f2913-a9b0-4a41-963d-6ad0c93f202d",
       "name": "Simple Memory"
     },
     {
@@ -74,38 +74,11 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -32,
-        112
+        -144,
+        384
       ],
-      "id": "c9e69a46-508d-4e7c-9f81-320b0c3066dd",
+      "id": "df0ab08d-95e4-4af7-9290-03d1223007f3",
       "name": "If"
-    },
-    {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "value": "gpt-5-nano",
-          "mode": "list",
-          "cachedResultName": "gpt-5-nano"
-        },
-        "options": {
-          "reasoningEffort": "low"
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        -384,
-        336
-      ],
-      "id": "9fdeddeb-fb0f-4e9d-9377-4ed73934ad54",
-      "name": "OpenAI Chat Model",
-      "credentials": {
-        "openAiApi": {
-          "id": "vIt4XIujtaBmV5aq",
-          "name": "OpenAi account"
-        }
-      }
     },
     {
       "parameters": {
@@ -114,10 +87,10 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
       "position": [
-        336,
-        544
+        224,
+        816
       ],
-      "id": "bd8a62ff-22b3-46e8-889b-47e3c6683588",
+      "id": "13517736-ccbd-4cb0-a6f4-21d0379b8155",
       "name": "Structured Output Parser2"
     },
     {
@@ -137,46 +110,45 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        544,
-        320
+        432,
+        592
       ],
-      "id": "5c5b2d37-64f8-46db-adf4-6bc5c21bab27",
+      "id": "a1625f38-b326-46ba-a4db-1cd673a07df5",
       "name": "Edit Fields"
     },
     {
       "parameters": {
-        "authentication": "oAuth2",
         "resource": "file",
         "owner": {
           "__rl": true,
-          "value": "tobiaszwingmann",
+          "value": "tobiaszwingmann-demo",
           "mode": "list",
-          "cachedResultName": "tobiaszwingmann",
-          "cachedResultUrl": "https://github.com/tobiaszwingmann"
+          "cachedResultName": "tobiaszwingmann-demo",
+          "cachedResultUrl": "https://github.com/tobiaszwingmann-demo"
         },
         "repository": {
           "__rl": true,
-          "value": "demo-building-ai-workflows-and-agents-with-n8n",
+          "value": "n8n-ai-bootcamp",
           "mode": "list",
-          "cachedResultName": "demo-building-ai-workflows-and-agents-with-n8n",
-          "cachedResultUrl": "https://github.com/tobiaszwingmann/demo-building-ai-workflows-and-agents-with-n8n"
+          "cachedResultName": "n8n-ai-bootcamp",
+          "cachedResultUrl": "https://github.com/tobiaszwingmann-demo/n8n-ai-bootcamp"
         },
-        "filePath": "=project 3/tickets/{{ $('Edit Fields').item.json.ID }}.txt",
+        "filePath": "=day 1/project 6/tickets/{{ $('Edit Fields').item.json.ID }}.txt",
         "fileContent": "=Prio: {{ $json.output.prio }}\n\nName: {{ $('Ticket Writer').item.json.output.Name }}\n\nSubmitted: {{ $now }}\n\nDescription:\n{{ $('Ticket Writer').item.json.output.Description }}",
         "commitMessage": "new ticket"
       },
       "type": "n8n-nodes-base.github",
       "typeVersion": 1.1,
       "position": [
-        1120,
-        320
+        1008,
+        592
       ],
-      "id": "344620c6-3149-4855-9669-29af020cae0c",
+      "id": "6526c42c-dd40-4d73-b971-89d7ade5b7d8",
       "name": "Create a file",
       "webhookId": "0b3813e2-6615-4593-95c6-35c19c3333ee",
       "credentials": {
-        "githubOAuth2Api": {
-          "id": "rqkMAdMVwbOGDQB4",
+        "githubApi": {
+          "id": "dcwZECd0FxhzyJj3",
           "name": "GitHub account"
         }
       }
@@ -188,10 +160,10 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
       "position": [
-        912,
-        544
+        800,
+        816
       ],
-      "id": "9c022c85-4f94-489d-80fb-9f6af0a446c0",
+      "id": "f7b37c3e-306b-4399-ba7e-a1ca731093b7",
       "name": "Structured Output Parser1"
     },
     {
@@ -211,63 +183,11 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1344,
-        320
+        1232,
+        592
       ],
-      "id": "385ebfa1-070a-42cf-9e77-61451acf3914",
+      "id": "3db15157-74f2-4027-8e6e-d95214674f8b",
       "name": "Edit Fields1"
-    },
-    {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "value": "gpt-5-nano",
-          "mode": "list",
-          "cachedResultName": "gpt-5-nano"
-        },
-        "options": {
-          "reasoningEffort": "low"
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        176,
-        544
-      ],
-      "id": "a1a689c0-ae14-49cc-bd75-4b79a09e485f",
-      "name": "OpenAI Chat Model1",
-      "credentials": {
-        "openAiApi": {
-          "id": "vIt4XIujtaBmV5aq",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "value": "gpt-5-nano",
-          "mode": "list",
-          "cachedResultName": "gpt-5-nano"
-        },
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        192,
-        16
-      ],
-      "id": "84ff0717-a813-4473-beec-89765e3ade2d",
-      "name": "OpenAI Chat Model2",
-      "credentials": {
-        "openAiApi": {
-          "id": "vIt4XIujtaBmV5aq",
-          "name": "OpenAi account"
-        }
-      }
     },
     {
       "parameters": {
@@ -280,10 +200,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
       "position": [
-        192,
-        -192
+        80,
+        80
       ],
-      "id": "05ca254b-2b7e-4c38-8166-81898c3886b7",
+      "id": "04e7aa53-b29b-4c02-8711-5356710affaf",
       "name": "Chatbot"
     },
     {
@@ -298,10 +218,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
       "position": [
-        192,
-        320
+        80,
+        592
       ],
-      "id": "91288f03-dc7c-43dc-9d43-e063d7356b66",
+      "id": "e94fc7b5-8c4d-40f2-a9e7-09542b11eb50",
       "name": "Ticket Writer"
     },
     {
@@ -321,10 +241,10 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.7,
       "position": [
-        -384,
-        112
+        -496,
+        384
       ],
-      "id": "54c19476-0821-4634-b1ec-67c8ca90535c",
+      "id": "cf3a53d1-ebd6-418a-89a7-bbf8df9e908a",
       "name": "Router"
     },
     {
@@ -344,38 +264,11 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.7,
       "position": [
-        768,
-        320
+        656,
+        592
       ],
-      "id": "2d755d85-fd85-4040-9271-1121ccade538",
+      "id": "72e8d69d-bd64-47ed-b9d3-e745f66d8805",
       "name": "Urgency"
-    },
-    {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "value": "gpt-5-nano",
-          "mode": "list",
-          "cachedResultName": "gpt-5-nano"
-        },
-        "options": {
-          "reasoningEffort": "low"
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        720,
-        544
-      ],
-      "id": "a5676885-cb45-4544-a4b3-f8be2510edba",
-      "name": "OpenAI Chat Model3",
-      "credentials": {
-        "openAiApi": {
-          "id": "vIt4XIujtaBmV5aq",
-          "name": "OpenAi account"
-        }
-      }
     },
     {
       "parameters": {
@@ -385,27 +278,27 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        -448,
-        -16
+        -560,
+        256
       ],
       "typeVersion": 1,
-      "id": "68466f43-3f19-4ca7-971a-962129d581a7",
+      "id": "3bbd531f-3518-4d0e-afc9-97cd070dfdea",
       "name": "Sticky Note"
     },
     {
       "parameters": {
         "content": "## Chatbot\nHandle support question automatically",
-        "height": 400,
+        "height": 432,
         "width": 704,
         "color": 4
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        112,
-        -272
+        0,
+        0
       ],
       "typeVersion": 1,
-      "id": "810e3f26-242a-43eb-bcfa-564d0028af58",
+      "id": "f33eccc5-17cf-4691-96fa-44947044f8a9",
       "name": "Sticky Note1"
     },
     {
@@ -417,12 +310,88 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        112,
-        224
+        0,
+        496
       ],
       "typeVersion": 1,
-      "id": "335b0ca5-f41a-4626-96cf-667b8fd4181b",
+      "id": "a3e1dcd3-807d-4504-996b-c97e0a4c7d50",
       "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -496,
+        608
+      ],
+      "id": "b3cd42dc-19ca-4cd5-8793-b76f21e6aa31",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "DccUcMMK12JiKk1S",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        64,
+        816
+      ],
+      "id": "b144ddb0-34dc-4427-8ae6-9dd597b4fa1a",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "DccUcMMK12JiKk1S",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        80,
+        288
+      ],
+      "id": "a38dbd28-c1a1-4ed3-88da-99f9189ec235",
+      "name": "Google Gemini Chat Model2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "DccUcMMK12JiKk1S",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        608,
+        816
+      ],
+      "id": "e83cf2d5-6cd2-42b0-844c-1dc293f42a3e",
+      "name": "Google Gemini Chat Model3",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "DccUcMMK12JiKk1S",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -483,17 +452,6 @@
         ]
       ]
     },
-    "OpenAI Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Router",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Structured Output Parser2": {
       "ai_outputParser": [
         [
@@ -538,28 +496,6 @@
         ]
       ]
     },
-    "OpenAI Chat Model1": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Ticket Writer",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model2": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Chatbot",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Ticket Writer": {
       "main": [
         [
@@ -593,7 +529,40 @@
         ]
       ]
     },
-    "OpenAI Chat Model3": {
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Router",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Ticket Writer",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Chatbot",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model3": {
       "ai_languageModel": [
         [
           {
@@ -607,19 +576,21 @@
   },
   "active": false,
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
   },
-  "versionId": "4ee3a32a-1920-45e8-b631-e75eb843a562",
+  "versionId": "456925c1-c70a-443c-9a5a-db7fae0e6aec",
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "94e1edcc34a91a151fc2ec1b99597068a304e37fdb946fc806f00f97776fce3a"
+    "instanceId": "26bf8eec37d4d0a7ee8a9b62eaf593a40b0ce784017882c7b978518d626df3a8"
   },
-  "id": "NVLxayMKI8kTsl8y",
+  "id": "hwhTfjPXOKp7VaEtCGv4y",
   "tags": [
     {
-      "createdAt": "2025-11-01T20:01:49.551Z",
-      "updatedAt": "2025-11-01T20:01:49.551Z",
-      "id": "t5Xu6If84iT9d4bw",
+      "updatedAt": "2026-02-08T20:46:07.403Z",
+      "createdAt": "2026-02-08T20:46:07.403Z",
+      "id": "1TjIuZa5ju0lNrOc",
       "name": "O'Reilly n8n"
     }
   ]
