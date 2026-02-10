@@ -100,82 +100,56 @@ Options:
 
 ### 1. Create New Workflow
 - n8n home --> New workflow
-- Name the workflow `P8 - Document Ingestion`
-
-
-
-
-
-
-
-
-## Part 2: Building a Custom Tool (`Create Ticket` Tool)
-
-You will build a custom n8n workflow which can be added to the AI agent as a tool. In this example, the workflow will generate a new ticket ID and create a new ticket.
-
-### 1. Create New Workflow
-- n8n home --> New workflow
+- Name the workflow `P8 - Document Search`
 
 ### 2. Add Trigger Node `When Executed by Another Workflow`
 #### Input data mode: `Define using fields below`
 
 | Parameter | Type   |
 | ----- | ---------- |
-| User Name | String` |
-| Issue Description | String` |
-| Status | String` |
-| Prio | String` |
+| query | String` |
 
 **Pin Test Data**:
-- User Name: `Tobias`
-- Issue Description: `My laptop fell down and is broken now`
-- Status: `Open`
-- Prio: `Urgent`
+- query: `Email templates aren’t displaying dynamic fields.`
 
-### 3. Add `Edit Fields` Node
+### 3. Add `Pinecone Vector Store` Node
+
+- **Operation**: `Get Many`
+- **Pinecone Index**: `From List`: `documents`
+- **Prompt**: `{{ $json.query }}`
+- **Limit**: 5
+- **Include Metadata**: `true`
+Options
+- **Pinecone Namespace**: `it`
+
+#### Add Subnode `Embedding`
+- Choose **Embeddings Google Gemini**
+- **Model**: `gemini-embedding-001`
+
+### 4. Add `Edit Fields` Node 
 **Manual Mapping**
  Name | Type | Value |
 | --- | ---- | ----- |
-| ID | String | `{{ $now.ts.toString(36).toUpperCase() }}` |
+| Content | String | `{{ $json.document.pageContent }}` |
+| Source File | String | `{{ $json.document.metadata.file_name }}` |
+| Page | String | `Page` |
 
+### 5. Add `Aggregate` Node 
+- **Aggregate**: `All Item Data (Into a Single List)`
+- **Put Output in Field**: `data`
+- **Include**: `All Fields`
 
-### 4. Add `Github Create File` Node
+### 6. Add `Edit Fields` Node 
+**Manual Mapping**
+ Name | Type | Value |
+| --- | ---- | ----- |
+| response | String | `{{ $json.toJsonString() }}` |
 
-**Resource**: `File`
-
-**Operation**: `Create`
-
-**Repository Owner**: `your-github-username`
-
-**Repository Name**: `n8n-ai-bootcamp` (forked)
-
-**File Path**
-```
-day 2/project 7/tickets/{{ $json.ID }}.txt
-```
-
-**File Content**
-```
-User Name: {{ $('When Executed by Another Workflow').item.json['User Name'] }}
-
-Submitted: {{ $now }}
-
-Description:
-{{ $('When Executed by Another Workflow').item.json['Issue Description'] }}
-
-Status: {{ $('When Executed by Another Workflow').item.json.Status }}
-Prio: {{ $('When Executed by Another Workflow').item.json.Prio }}
-```
-
-**Commit Message**
-```
-new ticket
-```
-
-### 5. Try it out!
+### 6. Try it out!
 - Run a test execution
+- Try different search queries and test the result
 
-### 6. Publish
+### 7. Publish
 - Everything work?
 - Click **Publish** to publish your workflow
 
